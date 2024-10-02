@@ -107,10 +107,13 @@ jobs:
       
       - name: Create release
         uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           release_name: Release v${{ needs.set_app_version.outputs.appVersion }}.${{ github.run_number }}
           tag_name: ${{ github.ref }}
           body: ${{ steps.read_release_notes.outputs.content }}
+          
       
       - name: Upload win-x64 release asset
         uses: actions/upload-release-asset@v1
