@@ -10,3 +10,7 @@
 
  * Refactoring and renaming.
  * Publication to github
+
+ ## 0.2.1
+
+ * Fixing Continuous integration for multiple platforms and proper releases..
