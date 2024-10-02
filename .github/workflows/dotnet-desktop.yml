@@ -63,6 +63,7 @@ jobs:
       Wap_Project_Directory: SaveGameSaver    # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
       Wap_Project_Path: SaveGameSaver                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
       NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
+      Output_Directory: ${{ github.workspace }}/output/
 
     steps:
     - name: Validate Cache
@@ -109,7 +110,7 @@ jobs:
 
     # Create the app package by building and packaging the Windows Application Packaging project
     - name: Create the app package
-      run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:TargetPlatform=$env:Targetplatform /p:RuntimeIdentifiers=$env:Runtimeidentifier /p:PublishSingleFile=true /p:SelfContained=true /p:RestorePackages=false
+      run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:TargetPlatform=$env:Targetplatform /p:RuntimeIdentifiers=$env:Runtimeidentifier /p:PublishSingleFile=true /p:SelfContained=true /p:RestorePackages=false /p:OutDir=$env:Output_Directory
       #run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
       env:
         Configuration: ${{ matrix.configuration }}
@@ -129,4 +130,4 @@ jobs:
 #      uses: actions/upload-artifact@v3
 #      with:
 #        name: Portable Executable
-#        path: ${{ env.Wap_Project_Directory }}\AppPackages
+#        path: ${{ env.Output_Directory }}\${{ env.Solution_name }}.exe
