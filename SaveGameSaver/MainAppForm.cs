@@ -1,6 +1,6 @@
 ﻿
 
-namespace DinkBack
+namespace SaveGameSaver
 {
     public partial class MainAppForm : Form
     {

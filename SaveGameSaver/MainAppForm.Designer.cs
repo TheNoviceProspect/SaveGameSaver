@@ -1,4 +1,4 @@
-﻿namespace DinkBack
+﻿namespace SaveGameSaver
 {
     partial class MainAppForm
     {

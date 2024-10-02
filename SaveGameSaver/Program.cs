@@ -1,4 +1,4 @@
-namespace DinkBack
+namespace SaveGameSaver
 {
     internal static class Program
     {
