@@ -26,6 +26,11 @@ jobs:
       Output_Directory: ${{ github.workspace }}/output/
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Set App Version Output
         id: set_app_version
         run: echo "$appVersion=${{ env.appVersion }}"
@@ -37,11 +42,6 @@ jobs:
           key: ${{ runner.os }}-nuget-${{ env.appVersion }}-${{ hashFiles('**/packages.lock.json') }}
           restore-keys: |
             ${{ runner.os }}-nuget-${{ env.appVersion }}
-
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Install .NET Core
         uses: actions/setup-dotnet@v4
@@ -79,8 +79,8 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: Portable Executable
-          path: ${{ needs.setup.outputs.output_directory }}\${{ needs.setup.outputs.solution_name }}.exe
+          name: ${{ needs.setup.outputs.solution_name}}-${{ matrix.runtimeidentifier }}-portable
+          path: ${{ needs.setup.outputs.output_directory }}\${{ needs.setup.outputs.solution_name }}\*exe
 
   create-release:
     runs-on: windows-latest
@@ -92,9 +92,42 @@ jobs:
         run: |
           $RELEASE_BODY = Get-Content -Path release-notes.md -Raw
           echo "::set-output name=content::${RELEASE_BODY}"
+      
+      - name: Download win-x64 artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: SaveGameSaver-win-x64-portable # Match the artifact name from the build job
+  
+      - name: Download win-arm64 artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: SaveGameSaver-win-arm64-portable # Match the artifact name from the build job
+  
+        
+      
       - name: Create release
         uses: actions/create-release@v1
         with:
           release_name: Release v${{ needs.set_app_version.outputs.appVersion }}.${{ github.run_number }}
           tag_name: ${{ github.ref }}
-          body: ${{ steps.read_release_notes.outputs.content }} 
+          body: ${{ steps.read_release_notes.outputs.content }}
+      
+      - name: Upload win-x64 release asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-release.outputs.upload_url }}
+          asset_path: ./SaveGameSaver-win-x64-portable/${{ needs.setup.outputs.solution_name }}.exe
+          asset_name: ${{ needs.setup.outputs.solution_name }}-win-x64.exe
+          asset_content_type: application/octet-stream
+      
+      - name: Upload win-arm64 release asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-release.outputs.upload_url }}
+          asset_path: ./SaveGameSaver-win-arm64-portable/${{ needs.setup.outputs.solution_name }}.exe
+          asset_name: ${{ needs.setup.outputs.solution_name }}-win-arm64.exe
+          asset_content_type: application/octet-stream
