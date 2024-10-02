@@ -1,4 +1,7 @@
-﻿namespace SaveGameSaver
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace SaveGameSaver
 {
     partial class MainAppForm
     {
