@@ -26,11 +26,6 @@ jobs:
       Output_Directory: ${{ github.workspace }}/output/
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
       - name: Set App Version Output
         id: set_app_version
         run: echo "$appVersion=${{ env.appVersion }}"
@@ -59,6 +54,11 @@ jobs:
     runs-on: windows-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Setup MSBuild.exe
         uses: microsoft/setup-msbuild@v2
 
