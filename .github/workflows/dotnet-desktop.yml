@@ -106,6 +106,7 @@ jobs:
         
       
       - name: Create release
+        id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -113,6 +114,8 @@ jobs:
           release_name: Release v${{ needs.set_app_version.outputs.appVersion }}.${{ github.run_number }}
           tag_name: ${{ github.ref }}
           body: ${{ steps.read_release_notes.outputs.content }}
+          draft: false
+          prerelease: false
           
       
       - name: Upload win-x64 release asset
@@ -120,7 +123,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create-release.outputs.upload_url }}
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./SaveGameSaver-win-x64-portable/${{ needs.setup.outputs.solution_name }}.exe
           asset_name: ${{ needs.setup.outputs.solution_name }}-win-x64.exe
           asset_content_type: application/octet-stream
@@ -130,7 +133,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create-release.outputs.upload_url }}
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./SaveGameSaver-win-arm64-portable/${{ needs.setup.outputs.solution_name }}.exe
           asset_name: ${{ needs.setup.outputs.solution_name }}-win-arm64.exe
           asset_content_type: application/octet-stream
