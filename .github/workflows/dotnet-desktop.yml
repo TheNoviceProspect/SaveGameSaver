@@ -28,7 +28,7 @@ jobs:
     steps:
       - name: Set App Version Output
         id: set_app_version
-        run: echo "::set-output name=appVersion::${{ env.appVersion }}"
+        run: echo "$appVersion=${{ env.appVersion }}"
 
       - name: Validate Cache
         uses: actions/cache@v4
