@@ -57,6 +57,7 @@ jobs:
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     env:
+      appVersion: 0.2
       Solution_Name: SaveGameSaver                         # Replace with your solution name, i.e. MyWpfApp.sln.
       #Test_Project_Path: DinkBack                 # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
       Wap_Project_Directory: SaveGameSaver    # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
@@ -70,7 +71,7 @@ jobs:
         path: ${{ github.workspace }}/.nuget/packages
         key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
         restore-keys: |
-          ${{ runner.os }}-nuget-
+          ${{ matrix.runtimeidentifier }}-nuget-${{ env.appVersion }}
     - name: Checkout
       uses: actions/checkout@v4
       with:
@@ -126,5 +127,5 @@ jobs:
 #    - name: Upload build artifacts
 #      uses: actions/upload-artifact@v3
 #      with:
-#        name: MSIX Package
+#        name: Portable Executable
 #        path: ${{ env.Wap_Project_Directory }}\AppPackages
