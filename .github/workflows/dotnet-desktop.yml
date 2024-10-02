@@ -43,6 +43,8 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  tag:
+    - 'v*'
 
 jobs:
   build:
@@ -131,3 +133,20 @@ jobs:
       with:
         name: Portable Executable
         path: ${{ env.Output_Directory }}\${{ env.Solution_name }}.exe
+  create-release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Read release body from file
+        env:
+          RELEASE_NOTES_FILE: "release-notes.md" # Replace with your file name
+        run: |
+          echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
+          cat $RELEASE_NOTES_FILE >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+      - name: Create release
+        uses: actions/create-release@v1
+        with:
+          release_name: Release ${{ github.ref_name }}
+          tag_name: ${{ github.ref }}
+          body: ${{ env.RELEASE_BODY }} 
