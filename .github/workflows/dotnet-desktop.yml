@@ -144,7 +144,7 @@ jobs:
       - name: Read release body from file
         id: read_release_notes
         run: |
-          RELEASE_BODY=$(cat release-notes.md)
+          $RELEASE_BODY = Get-Content -Path release-notes.md -Raw
           echo "::set-output name=content::${RELEASE_BODY}"
       - name: Create release
         uses: actions/create-release@v1
