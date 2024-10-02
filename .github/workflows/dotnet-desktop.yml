@@ -138,10 +138,13 @@ jobs:
     needs: build
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Read release body from file
         env:
           RELEASE_NOTES_FILE: "release-notes.md" # Replace with your file name
         run: |
+          echo "[DEBUG]: RELEASE_NOTES_FILE value: $RELEASE_NOTES_FILE"
           echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
           cat $RELEASE_NOTES_FILE >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
