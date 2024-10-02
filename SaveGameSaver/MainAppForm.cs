@@ -1,5 +1,11 @@
 ﻿
 
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
+
 namespace SaveGameSaver
 {
     public partial class MainAppForm : Form
@@ -188,6 +194,9 @@ namespace SaveGameSaver
             return MessageBox.Show(caption, msg, buttons, icon);
         }
 
+        /// <summary>
+        /// Mainform Contructor
+        /// </summary>
         public MainAppForm()
         {
             InitializeComponent();
