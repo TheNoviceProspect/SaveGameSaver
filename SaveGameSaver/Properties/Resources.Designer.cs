@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DinkBack.Properties {
+namespace SaveGameSaver.Properties {
     using System;
     
     
