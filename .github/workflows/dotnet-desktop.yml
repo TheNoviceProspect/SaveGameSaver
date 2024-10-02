@@ -49,9 +49,9 @@ jobs:
 
     strategy:
       matrix:
-        configuration: [Debug, Release]
-        target_platform: [net8.0-windows]
-        runtime_identifier: [win-x64]
+        configuration: [Release]
+        targetplatform: [net8.0-windows]
+        runtimeidentifier: [win-x64,win-arm64]
 
     runs-on: windows-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
@@ -92,9 +92,11 @@ jobs:
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
-      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration /p:TargetPlatform=$env:target_platform /p:RuntimeIdentifiers=$env:runtime_identifier
+      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration /p:TargetPlatform=$env:Targetplatform /p:RuntimeIdentifiers=$env:Runtimeidentifier
       env:
         Configuration: ${{ matrix.configuration }}
+        Targetplatform: ${{ matrix.targetplatform }}
+        Runtimeidentifier: ${{ matrix.runtimeidentifier }}
 
     # Decode the base 64 encoded pfx and save the Signing_Certificate
 #    - name: Decode the pfx
@@ -105,9 +107,12 @@ jobs:
 
     # Create the app package by building and packaging the Windows Application Packaging project
     - name: Create the app package
-      run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:TargetPlatform=$env:target_platform /p:RuntimeIdentifiers=$env:runtime_identifier /p:PublishSingleFile=true /p:SelfContained=true /p:RestorePackages=false
+      run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:TargetPlatform=$env:Targetplatform /p:RuntimeIdentifiers=$env:Runtimeidentifier /p:PublishSingleFile=true /p:SelfContained=true /p:RestorePackages=false
       #run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
-#      env:
+      env:
+        Configuration: ${{ matrix.configuration }}
+        Targetplatform: ${{ matrix.targetplatform }}
+        Runtimeidentifier: ${{ matrix.runtimeidentifier }}
 #        Appx_Bundle: Always
 #        Appx_Bundle_Platforms: x86|x64
 #        Appx_Package_Build_Mode: StoreUpload
