@@ -40,12 +40,12 @@ name: .NET Core Desktop
 
 on:
   push:
+    tags:
+      - 'v*'
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-  tag:
-    - 'v*'
-
+  
 jobs:
   build:
 
