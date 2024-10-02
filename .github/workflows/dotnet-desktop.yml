@@ -50,6 +50,8 @@ jobs:
     strategy:
       matrix:
         configuration: [Debug, Release]
+        target_platform: [net8.0-windows]
+        runtime_identifier: [win-x64]
 
     runs-on: windows-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
@@ -103,7 +105,7 @@ jobs:
 
     # Create the app package by building and packaging the Windows Application Packaging project
     - name: Create the app package
-      run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:PublishSingleFile=true /p:SelfContained=true /p:RestorePackages=false
+      run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:Platform=$env:target_platform /p:Runtimeidentifier=$env:runtime_identifier /p:PublishSingleFile=true /p:SelfContained=true /p:RestorePackages=false
       #run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
 #      env:
 #        Appx_Bundle: Always
