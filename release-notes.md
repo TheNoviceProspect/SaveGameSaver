@@ -14,3 +14,7 @@
  ## 0.2.1
 
  * Fixing Continuous integration for multiple platforms and proper releases..
+
+ ## 0.2.4
+
+ * Preparation for auto-updating.

@@ -105,16 +105,15 @@ jobs:
       
       - name: Determine Release Name
         id: determine_release_name
-        run: |
+        run: >-
           $releaseName = "Release v${{ needs.set_app_version.outputs.appVersion }}.${{ github.run_number }}"
-          if (${{ github.event_name }} -eq 'push') {
+          if ("${{ github.event_name }}" -eq 'push') {
             $releaseName = "$releaseName - ${{ github.event.commits[0].message }}"
           } else {
             $releaseName = "$releaseName - ${{ github.event.pull_request.title }}"
           }
           echo "::set-output name=release_name::$releaseName"
-  
-        
+
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
