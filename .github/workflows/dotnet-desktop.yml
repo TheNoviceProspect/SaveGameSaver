@@ -83,7 +83,7 @@ jobs:
           path: ${{ needs.setup.outputs.output_directory }}\\${{ needs.setup.outputs.solution_name }}*.exe
 
       - name: Print Environment Variables
-        uses: ${{ github.repository }}/.github/workflows/print-env.yml@main
+        uses: "${{ github.repository }}/.github/workflows/print-env.yml@main"
 
   create-release:
     runs-on: windows-latest
@@ -108,7 +108,7 @@ jobs:
           name: SaveGameSaver-win-arm64.exe # Match the artifact name from the build job
           path: .
       - name: Print Environment Variables
-        uses: ${{ github.repository }}/.github/workflows/print-env.yml@main
+        uses: "${{ github.repository }}/.github/workflows/print-env.yml@main"
       - name: Determine Release Name
         id: determine_release_name
         run: |
