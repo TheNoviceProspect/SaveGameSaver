@@ -83,8 +83,12 @@ jobs:
           path: ${{ needs.setup.outputs.output_directory }}\\${{ needs.setup.outputs.solution_name }}*.exe
 
       - name: List win-x64 directory contents
+        id: List_win_x64_directory_contents 
         run: |
           powershell -Command "Get-ChildItem -Path ./* | Out-String" >> $GITHUB_OUTPUT
+
+      - name: Print directory listing
+        run: echo "${{ steps.List_win_x64_directory_contents.outputs.directory_listing }}"
 
   create-release:
     runs-on: windows-latest
