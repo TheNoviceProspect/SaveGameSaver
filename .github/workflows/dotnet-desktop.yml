@@ -102,23 +102,33 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: SaveGameSaver-win-arm64.exe # Match the artifact name from the build job
+      
+      - name: Determine Release Name
+        id: determine_release_name
+        run: |
+          $releaseName = "Release v${{ needs.set_app_version.outputs.appVersion }}.${{ github.run_number }}"
+          if (${{ github.event_name }} -eq 'push') {
+            $releaseName = "$releaseName - ${{ github.event.commits[0].message }}"
+          } else {
+            $releaseName = "$releaseName - ${{ github.event.pull_request.title }}"
+          }
+          echo "::set-output name=release_name::$releaseName"
   
         
-      
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          release_name: Release v${{ needs.set_app_version.outputs.appVersion }}.${{ github.run_number }}
+          release_name: ${{ steps.determine_release_name.outputs.release_name }}
           tag_name: ${{ github.ref }}
-          body: |
+          body: >-
             ## New Release: v${{ needs.set_app_version.outputs.appVersion }}.${{ github.run_number }}
 
             **Auto-Update Hint:**
             ```json
-            { "version": "${{ needs.set_app_version.outputs.appVersion }}.${{ github.run_number }}" }
+            { "version": v"${{ needs.set_app_version.outputs.appVersion }}.${{ github.run_number }}" }
             ```
           draft: false
           prerelease: false
