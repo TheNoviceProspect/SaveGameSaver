@@ -79,14 +79,18 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ needs.setup.outputs.solution_name}}-${{ matrix.runtimeidentifier }}-portable
+          name: ${{ needs.setup.outputs.solution_name}}-${{ matrix.runtimeidentifier }}-portable.exe
           path: ${{ needs.setup.outputs.output_directory }}\\${{ needs.setup.outputs.solution_name }}*.exe
 
       - name: List win-x64 directory contents
         id: List_win_x64_directory_contents 
         run: |
-          powershell -Command "Get-ChildItem -Path ./* | Out-String" >> $GITHUB_OUTPUT
+          powershell -Command "Get-ChildItem -Path . -Recurse | Out-String" >> $GITHUB_OUTPUT
+          echo "::set-output name=directory_listing::$(powershell -Command "Get-ChildItem -Path . -Recurse | Out-String")" >> $GITHUB_OUTPUT
 
+      - name: Announce Debug Output
+        run: echo "The following should contain a directory listing" >> $GITHUB_OUTPUT
+      
       - name: Print directory listing
         run: echo "${{ steps.List_win_x64_directory_contents.outputs.directory_listing }}"
 
