@@ -83,7 +83,12 @@ jobs:
           path: ${{ needs.setup.outputs.output_directory }}\\${{ needs.setup.outputs.solution_name }}*.exe
 
       - name: Print Environment Variables
-        uses: ${{ github.repository }}/.github/workflows/print-env.yml@main
+        run: |
+          echo "GITHUB_EVENT_NAME: ${{ github.event_name }}"
+          echo "GITHUB_REF: ${{ github.ref }}"
+          echo "GITHUB_RUN_NUMBER: ${{ github.run_number }}"
+          echo "GITHUB_EVENT_COMMITS: ${{ toJSON(github.event.commits) }}"
+          echo "GITHUB_EVENT_PULL_REQUEST: ${{ toJSON(github.event.pull_request) }}"
 
   create-release:
     runs-on: windows-latest
@@ -108,7 +113,12 @@ jobs:
           name: SaveGameSaver-win-arm64.exe # Match the artifact name from the build job
           path: .
       - name: Print Environment Variables
-        uses: ${{ github.repository }}/.github/workflows/print-env.yml@main
+        run: |
+          echo "GITHUB_EVENT_NAME: ${{ github.event_name }}"
+          echo "GITHUB_REF: ${{ github.ref }}"
+          echo "GITHUB_RUN_NUMBER: ${{ github.run_number }}"
+          echo "GITHUB_EVENT_COMMITS: ${{ toJSON(github.event.commits) }}"
+          echo "GITHUB_EVENT_PULL_REQUEST: ${{ toJSON(github.event.pull_request) }}"
       - name: Determine Release Name
         id: determine_release_name
         run: |
