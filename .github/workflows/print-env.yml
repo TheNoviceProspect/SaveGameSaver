@@ -1,0 +1,16 @@
+name: Print Environment Variables
+
+on:
+  workflow_call:
+
+jobs:
+  print-env:
+    runs-on: windows-latest
+    steps:
+      - name: Print Environment Variables
+        run: |
+          echo "GITHUB_EVENT_NAME: ${{ github.event_name }}"
+          echo "GITHUB_REF: ${{ github.ref }}"
+          echo "GITHUB_RUN_NUMBER: ${{ github.run_number }}"
+          echo "GITHUB_EVENT_COMMITS: ${{ toJSON(github.event.commits) }}"
+          echo "GITHUB_EVENT_PULL_REQUEST: ${{ toJSON(github.event.pull_request) }}"

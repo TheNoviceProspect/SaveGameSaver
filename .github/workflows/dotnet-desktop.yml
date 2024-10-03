@@ -82,6 +82,9 @@ jobs:
           name: ${{ needs.setup.outputs.solution_name}}-${{ matrix.runtimeidentifier }}.exe
           path: ${{ needs.setup.outputs.output_directory }}\\${{ needs.setup.outputs.solution_name }}*.exe
 
+      - name: Print Environment Variables
+        uses: ./.github/workflows/print-env.yml # Print the Environment!
+
   create-release:
     runs-on: windows-latest
     needs: [ setup, build ]
@@ -104,6 +107,8 @@ jobs:
         with:
           name: SaveGameSaver-win-arm64.exe # Match the artifact name from the build job
           path: .
+      - name: Print Environment Variables
+        uses: ./.github/workflows/print-env.yml # Print Environment!
       - name: Determine Release Name
         id: determine_release_name
         run: |
