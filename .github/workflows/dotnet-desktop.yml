@@ -96,12 +96,12 @@ jobs:
       - name: Download win-x64 artifact
         uses: actions/download-artifact@v3
         with:
-          name: SaveGameSaver-win-x64-portable.exe # Match the artifact name from the build job
+          name: SaveGameSaver-win-x64.exe # Match the artifact name from the build job
   
       - name: Download win-arm64 artifact
         uses: actions/download-artifact@v3
         with:
-          name: SaveGameSaver-win-arm64-portable.exe # Match the artifact name from the build job
+          name: SaveGameSaver-win-arm64.exe # Match the artifact name from the build job
   
         
       
