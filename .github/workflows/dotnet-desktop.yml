@@ -18,7 +18,7 @@ jobs:
       app_version: ${{ steps.set_app_version.outputs.appVersion }}
 
     env:
-      appVersion: 0.2.4
+      appVersion: 0.2α(alpha)
       Solution_Name: SaveGameSaver                         
       Wap_Project_Directory: SaveGameSaver    
       Wap_Project_Path: SaveGameSaver                   
