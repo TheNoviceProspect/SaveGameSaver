@@ -85,7 +85,8 @@ jobs:
   create-release:
     runs-on: windows-latest
     needs: [ setup, build ]
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true && github.base_ref == 'main')
+    if: (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) || 
+       (github.event_name == 'pull_request' && github.event.pull_request.merged == true && github.base_ref == 'main')
     steps:
       - uses: actions/checkout@v3
       - name: Read release body from file
