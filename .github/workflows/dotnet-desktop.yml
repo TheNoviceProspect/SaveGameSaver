@@ -84,8 +84,7 @@ jobs:
 
       - name: List win-x64 directory contents
         run: |
-          dir ./SaveGameSaver-win*
-          echo "::set-output name=directory_listing::$(dir ./SaveGameSaver-win*)"
+          powershell -Command "Get-ChildItem -Path ./SaveGameSaver-win* | Out-String" >> $GITHUB_OUTPUT
 
   create-release:
     runs-on: windows-latest
