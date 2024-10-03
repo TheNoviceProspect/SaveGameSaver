@@ -135,7 +135,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Sa${{ needs.setup.outputs.solution_name }}-win-x64.exe
+          asset_path: ./${{ needs.setup.outputs.solution_name }}-win-x64.exe
           asset_name: ${{ needs.setup.outputs.solution_name }}-win-x64.exe
           asset_content_type: application/octet-stream
       - name: Upload win-arm64 release asset
