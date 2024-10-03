@@ -83,7 +83,9 @@ jobs:
           path: ${{ needs.setup.outputs.output_directory }}\\${{ needs.setup.outputs.solution_name }}*.exe
 
       - name: List win-x64 directory contents
-        run: dir ./SaveGameSaver-win*
+        run: |
+          dir ./SaveGameSaver-win*
+          echo "::set-output name=directory_listing::$(dir ./SaveGameSaver-win*)"
 
   create-release:
     runs-on: windows-latest
