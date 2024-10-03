@@ -84,7 +84,7 @@ jobs:
 
       - name: List win-x64 directory contents
         run: |
-          powershell -Command "Get-ChildItem -Path ./SaveGameSaver-win* | Out-String" >> $GITHUB_OUTPUT
+          powershell -Command "Get-ChildItem -Path ./* | Out-String" >> $GITHUB_OUTPUT
 
   create-release:
     runs-on: windows-latest
