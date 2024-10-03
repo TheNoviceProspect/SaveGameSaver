@@ -105,7 +105,7 @@ jobs:
       
       - name: Determine Release Name
         id: determine_release_name
-        run: >-
+        run: |
           $releaseName = "Release v${{ needs.set_app_version.outputs.appVersion }}.${{ github.run_number }}"
           if ("${{ github.event_name }}" -eq 'push') {
             $releaseName = "$releaseName - ${{ github.event.commits[0].message }}"
