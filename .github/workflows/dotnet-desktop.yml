@@ -91,18 +91,15 @@ jobs:
         id: read_release_notes
         run: |
           $RELEASE_BODY = Get-Content -Path release-notes.md -Raw
-          echo "::set-output name=content::${RELEASE_BODY}"
-      
+          echo "content=${RELEASE_BODY}" >> $GITHUB_OUTPUT
       - name: Download win-x64 artifact
         uses: actions/download-artifact@v3
         with:
           name: SaveGameSaver-win-x64.exe # Match the artifact name from the build job
-  
       - name: Download win-arm64 artifact
         uses: actions/download-artifact@v3
         with:
           name: SaveGameSaver-win-arm64.exe # Match the artifact name from the build job
-      
       - name: Determine Release Name
         id: determine_release_name
         run: |
@@ -112,8 +109,7 @@ jobs:
           } else {
             $releaseName = "$releaseName - ${{ github.event.pull_request.title }}"
           }
-          echo "::set-output name=release_name::$releaseName"
-
+          echo "release_name=$releaseName" >> $GITHUB_OUTPUT
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
@@ -131,8 +127,6 @@ jobs:
             ```
           draft: false
           prerelease: false
-          
-      
       - name: Upload win-x64 release asset
         uses: actions/upload-release-asset@v1
         env:
@@ -142,7 +136,6 @@ jobs:
           asset_path: ./SaveGameSaver-win-x64*
           asset_name: ${{ needs.setup.outputs.solution_name }}-win-x64.exe
           asset_content_type: application/octet-stream
-      
       - name: Upload win-arm64 release asset
         uses: actions/upload-release-asset@v1
         env:
