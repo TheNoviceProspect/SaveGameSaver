@@ -83,7 +83,6 @@ jobs:
           path: ${{ needs.setup.outputs.output_directory }}\\${{ needs.setup.outputs.solution_name }}*.exe
 
       - name: List win-x64 directory contents
-        if: github.event_name != 'push' || !startsWith(github.ref, 'refs/tags/') # <-- Add this condition
         run: dir ./SaveGameSaver-win*
 
   create-release:
