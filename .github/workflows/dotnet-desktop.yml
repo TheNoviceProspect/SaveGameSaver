@@ -21,8 +21,8 @@ jobs:
     env:
       appVersion: 0.3α(alpha)
       Solution_Name: SaveGameSaver
-      Core_Project_Directory: SaveGameSaver
-      Core_Project_Path: SaveGameSaver
+      Core_Project_Directory: SaveGameSaver.Core
+      Core_Project_Path: SaveGameSaver.Core
       Desktop_Project_Directory: SaveGameSaver.Desktop
       Desktop_Project_Path: SaveGameSaver.Desktop
       NUGET_PACKAGES: ${{ github.workspace }}\\.nuget\\packages

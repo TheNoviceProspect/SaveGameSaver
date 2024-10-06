@@ -14,6 +14,6 @@ A simple backup solution for locally installed save games. (Useful for things li
 
 ## TODO
 
- - Implement Recovery
+ - Implement Recovery (Started)
  - Implement backup naming based on *either* date **or** time (The difference between a daily backup and up to 10 backups in the same day)
  - Allow change of MaxBackups (which would also affect the previous todo)

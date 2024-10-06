@@ -3,10 +3,10 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
 
-using SaveGameSaver.ViewModels;
-using SaveGameSaver.Views;
+using SaveGameSaver.Core.ViewModels;
+using SaveGameSaver.Core.Views;
 
-namespace SaveGameSaver;
+namespace SaveGameSaver.Core;
 
 public partial class App : Application
 {

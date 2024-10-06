@@ -14,6 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SaveGameSaver\SaveGameSaver.csproj" />
+    <ProjectReference Include="..\SaveGameSaver\SaveGameSaver.Core.csproj" />
   </ItemGroup>
 </Project>

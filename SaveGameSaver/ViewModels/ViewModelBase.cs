@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace SaveGameSaver.ViewModels;
+namespace SaveGameSaver.Core.ViewModels;
 
 public class ViewModelBase : ObservableObject
 {

@@ -1,4 +1,4 @@
-﻿namespace SaveGameSaver.ViewModels;
+﻿namespace SaveGameSaver.Core.ViewModels;
 
 public partial class MainViewModel : ViewModelBase
 {

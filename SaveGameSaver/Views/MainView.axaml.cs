@@ -1,6 +1,6 @@
 ﻿using Avalonia.Controls;
 
-namespace SaveGameSaver.Views;
+namespace SaveGameSaver.Core.Views;
 
 public partial class MainView : UserControl
 {
