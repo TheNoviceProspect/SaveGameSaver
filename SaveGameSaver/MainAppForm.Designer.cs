@@ -150,6 +150,7 @@ namespace SaveGameSaver
             button2.Text = "Restore Save";
             button2.TextAlign = ContentAlignment.TopCenter;
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // MainAppForm
             // 
