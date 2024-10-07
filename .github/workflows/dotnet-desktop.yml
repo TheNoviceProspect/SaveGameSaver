@@ -10,7 +10,7 @@ on:
 
 jobs:
   setup: # New job for setup and common steps
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     outputs:
       solution_name: ${{ env.Solution_Name }}
       core_project_path: ${{ env.Core_Project_Path }}
@@ -25,8 +25,8 @@ jobs:
       Core_Project_Path: SaveGameSaver.Core
       Desktop_Project_Directory: SaveGameSaver.Desktop
       Desktop_Project_Path: SaveGameSaver.Desktop
-      NUGET_PACKAGES: ${{ github.workspace }}\\.nuget\\packages
-      Output_Directory: ${{ github.workspace }}\\output\\
+      NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
+      Output_Directory: ${{ github.workspace }}/output/
 
     steps:
       - name: Set App Version Output
@@ -36,8 +36,8 @@ jobs:
       - name: Validate Cache
         uses: actions/cache@v4
         with:
-          path: ${{ github.workspace }}\\.nuget\\packages
-          key: ${{ runner.os }}-nuget-${{ env.appVersion }}-${{ hashFiles('**\\packages.lock.json') }}
+          path: ${{ github.workspace }}/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ env.appVersion }}-${{ hashFiles('**/packages.lock.json') }}
           restore-keys: |
             ${{ runner.os }}-nuget-${{ env.appVersion }}
 
@@ -65,17 +65,15 @@ jobs:
       - name: Setup MSBuild.exe
         uses: microsoft/setup-msbuild@v2
 
-#      - name: Restore the application
-#        run: msbuild ${{ needs.setup.outputs.solution_name }} /t:Restore /p:Configuration=$env:Configuration /p:TargetPlatform=$env:Targetplatform /p:RuntimeIdentifiers=$env:Runtimeidentifier
-#        env:
-#          Configuration: ${{ matrix.configuration }}
-#          Targetplatform: ${{ matrix.targetplatform }}
-#          Runtimeidentifier: ${{ matrix.runtimeidentifier }}
+      - name: Restore the application
+        run: msbuild ${{ needs.setup.outputs.solution_name }} /t:Restore /p:Configuration=$env:Configuration /p:TargetPlatform=$env:Targetplatform /p:RuntimeIdentifiers=$env:Runtimeidentifier
+        env:
+          Configuration: ${{ matrix.configuration }}
+          Targetplatform: ${{ matrix.targetplatform }}
+          Runtimeidentifier: ${{ matrix.runtimeidentifier }}
 
       - name: Create the app package
-        run: |
-          msbuild ${{ needs.setup.outputs.solution_name }} /t:Restore /p:Configuration=$env:Configuration /p:TargetPlatform=$env:Targetplatform /p:RuntimeIdentifiers=$env:Runtimeidentifier &&
-          msbuild ${{ needs.setup.outputs.solution_name }} /p:Configuration=$env:Configuration /p:TargetPlatform=$env:Targetplatform /p:RuntimeIdentifiers=$env:Runtimeidentifier /p:UseAppHost=true /p:PublishSingleFile=true /p:SelfContained=true /p:RestorePackages=false /p:OutDir=${{ needs.setup.outputs.output_directory }}
+        run: msbuild ${{ needs.setup.outputs.solution_name }} /p:Configuration=$env:Configuration /p:TargetPlatform=$env:Targetplatform /p:RuntimeIdentifiers=$env:Runtimeidentifier /p:UseAppHost=true /p:PublishSingleFile=true /p:SelfContained=true /p:RestorePackages=false /p:OutDir=${{ needs.setup.outputs.output_directory }}
         env:
           Configuration: ${{ matrix.configuration }}
           Targetplatform: ${{ matrix.targetplatform }}
@@ -86,14 +84,6 @@ jobs:
         with:
           name: ${{ needs.setup.outputs.solution_name}}-${{ matrix.runtimeidentifier }}
           path: ${{ needs.setup.outputs.output_directory }}\\* # Upload all files in the output directory
-
-      - name: Print Environment Variables
-        run: |
-          echo "GITHUB_EVENT_NAME: ${{ github.event_name }}"
-          echo "GITHUB_REF: ${{ github.ref }}"
-          echo "GITHUB_RUN_NUMBER: ${{ github.run_number }}"
-          echo "GITHUB_EVENT_COMMITS: ${{ toJSON(github.event.commits) }}"
-          echo "GITHUB_EVENT_PULL_REQUEST: ${{ toJSON(github.event.pull_request) }}"
 
   create-release:
     runs-on: windows-latest
