@@ -7,6 +7,16 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+    
+env:
+  appVersion: 0.3α(alpha)
+  Solution_Name: SaveGameSaver
+  Core_Project_Directory: SaveGameSaver.Core
+  Core_Project_Path: SaveGameSaver.Core
+  Desktop_Project_Directory: SaveGameSaver.Desktop
+  Desktop_Project_Path: SaveGameSaver.Desktop
+  NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
+  Output_Directory: ${{ github.workspace }}/output/
 
 jobs:
   setup: # New job for setup and common steps
@@ -18,20 +28,11 @@ jobs:
       output_directory: ${{ env.Output_Directory }}
       app_version: ${{ steps.set_app_version.outputs.appVersion }}
 
-    env:
-      appVersion: 0.3α(alpha)
-      Solution_Name: SaveGameSaver
-      Core_Project_Directory: SaveGameSaver.Core
-      Core_Project_Path: SaveGameSaver.Core
-      Desktop_Project_Directory: SaveGameSaver.Desktop
-      Desktop_Project_Path: SaveGameSaver.Desktop
-      NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
-      Output_Directory: ${{ github.workspace }}/output/
 
     steps:
       - name: Set App Version Output
         id: set_app_version
-        run: echo "$appVersion=${{ env.appVersion }}"
+        run: echo "$appVersion=${{ env.appVersion }}" >> GITHUB_OUTPUT
 
       - name: Validate Cache
         uses: actions/cache@v4
@@ -97,20 +98,10 @@ jobs:
         uses: actions/checkout@v3
         with: 
           fetch-depth: 0
-      - name: Download win-x64 artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: SaveGameSaver-win-x64 # Match the artifact name from the build job
-          path: .
-      - name: Download win-arm64 artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: SaveGameSaver-win-arm64 # Match the artifact name from the build job
-          path: .
       - name: Determine Release Name
         id: determine_release_name
         run: |
-          releaseName="Release v${{ needs.set_app_version.outputs.appVersion }}.${{ github.run_number }}"
+          releaseName="Release v${{ env.appVersion }}.${{ github.run_number }}"
           if [[ "${{ github.event_name }}" == "push" ]]; then
             releaseName="$releaseName - ${{ github.event.commits[0].message }}"
           else
@@ -126,11 +117,11 @@ jobs:
           release_name: ${{ steps.determine_release_name.outputs.release_name }}
           tag_name: ${{ github.ref }}
           body: >-
-            ## New Release: v${{ needs.set_app_version.outputs.appVersion }}.${{ github.run_number }}
+            ## New Release: v${{ env.appVersion }}.${{ github.run_number }}
 
             **Auto-Update Hint:**
             ```json
-            { "version": v"${{ needs.set_app_version.outputs.appVersion }}.${{ github.run_number }}" }
+            { "version": v"${{ env.appVersion }}.${{ github.run_number }}" }
             ```
           draft: false
           prerelease: false
@@ -140,6 +131,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./SaveGameSaver-${{ matrix.runtimeidentifier }}* 
+          asset_path: ${{ needs.setup.outputs.output_directory }}/SaveGameSaver-${{ matrix.runtimeidentifier }}*  # Use the correct output directory
           asset_name: SaveGameSaver-${{ matrix.runtimeidentifier }}.zip 
-          asset_content_type: application/zip
+          asset_content_type: application/zip 
