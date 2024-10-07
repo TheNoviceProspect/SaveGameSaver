@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT Type="Advanced Installer" CreateVersion="22.1" version="22.1" Modules="simple" RootPath="." Language="en_GB" Id="{BF446802-5660-4481-AB12-D76043FD4957}">
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
+    <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
+    <ROW Property="ALLUSERS" Value="1"/>
+    <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
+    <ROW Property="Manufacturer" Value="Sebastian_TheNovice"/>
+    <ROW Property="ProductCode" Value="2057:{3AA2D0F6-C338-4B3C-B545-F01D0AB13B17} " Type="16"/>
+    <ROW Property="ProductLanguage" Value="1033"/>
+    <ROW Property="ProductName" Value="SaveGameSaver"/>
+    <ROW Property="ProductVersion" Value="0.3.0" Options="32"/>
+    <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
+    <ROW Property="UpgradeCode" Value="{274374C4-BEC0-462B-8619-EF616063CEF9}"/>
+    <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40Display" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50Display" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5X" MultiBuildValue="DefaultBuild:Windows XP/2003" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5XDisplay" MultiBuildValue="DefaultBuild:Windows XP/2003" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT60" MultiBuildValue="DefaultBuild:Windows Vista/Server 2008" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT60Display" MultiBuildValue="DefaultBuild:Windows Vista/Server 2008" ValueLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
+    <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+    <ROW Directory="linuxarm64_Dir" Directory_Parent="runtimes_Dir" DefaultDir="LINUX-~2|linux-arm64"/>
+    <ROW Directory="linuxarm_Dir" Directory_Parent="runtimes_Dir" DefaultDir="LINUX-~1|linux-arm"/>
+    <ROW Directory="linuxmuslx64_Dir" Directory_Parent="runtimes_Dir" DefaultDir="LINUX-~3|linux-musl-x64"/>
+    <ROW Directory="linuxx64_Dir" Directory_Parent="runtimes_Dir" DefaultDir="LINUX-~4|linux-x64"/>
+    <ROW Directory="native_1_Dir" Directory_Parent="linuxarm64_Dir" DefaultDir="native"/>
+    <ROW Directory="native_2_Dir" Directory_Parent="linuxmuslx64_Dir" DefaultDir="native"/>
+    <ROW Directory="native_3_Dir" Directory_Parent="linuxx64_Dir" DefaultDir="native"/>
+    <ROW Directory="native_4_Dir" Directory_Parent="osx_Dir" DefaultDir="native"/>
+    <ROW Directory="native_5_Dir" Directory_Parent="winarm64_Dir" DefaultDir="native"/>
+    <ROW Directory="native_6_Dir" Directory_Parent="winx64_Dir" DefaultDir="native"/>
+    <ROW Directory="native_7_Dir" Directory_Parent="winx86_Dir" DefaultDir="native"/>
+    <ROW Directory="native_Dir" Directory_Parent="linuxarm_Dir" DefaultDir="native"/>
+    <ROW Directory="net8.0_1_Dir" Directory_Parent="APPDIR" DefaultDir="app"/>
+    <ROW Directory="net8.0_Dir" Directory_Parent="APPDIR" DefaultDir="core"/>
+    <ROW Directory="osx_Dir" Directory_Parent="runtimes_Dir" DefaultDir="osx"/>
+    <ROW Directory="runtimes_Dir" Directory_Parent="net8.0_1_Dir" DefaultDir="runtimes"/>
+    <ROW Directory="winarm64_Dir" Directory_Parent="runtimes_Dir" DefaultDir="WIN-AR~1|win-arm64"/>
+    <ROW Directory="winx64_Dir" Directory_Parent="runtimes_Dir" DefaultDir="win-x64"/>
+    <ROW Directory="winx86_Dir" Directory_Parent="runtimes_Dir" DefaultDir="win-x86"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.SideBySideGuidComponent">
+    <ROW Component="APPDIR" Value="{51AD1195-FD0F-498E-8BC8-3FF820C8C3BE}"/>
+    <ROW Component="ProductInformation" Value="{548DBA02-CF17-492E-BAE7-E35A958538EA}"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
+    <ROW Component="APPDIR" ComponentId="{51AD1195-FD0F-498E-8BC8-3FF820C8C3BE}" Directory_="APPDIR" Attributes="0"/>
+    <ROW Component="Avalonia.Base.dll" ComponentId="{ED367F0A-AFB8-4F4D-AFFE-F998C83B9755}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="Avalonia.Base.dll"/>
+    <ROW Component="Avalonia.Controls.dll" ComponentId="{146C2E59-2AF9-4C91-9131-5A4EAE14471A}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="Avalonia.Controls.dll"/>
+    <ROW Component="Avalonia.DesignerSupport.dll" ComponentId="{BFA2FCEE-8813-4E92-BB38-ED49ACD7A6C2}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="Avalonia.DesignerSupport.dll"/>
+    <ROW Component="Avalonia.Desktop.dll" ComponentId="{80844A9D-D631-48B3-9408-CAD24B454ACA}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="Avalonia.Desktop.dll"/>
+    <ROW Component="Avalonia.Dialogs.dll" ComponentId="{0BA072B8-6450-40D5-BF84-B76A9826DFE5}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="Avalonia.Dialogs.dll"/>
+    <ROW Component="Avalonia.Fonts.Inter.dll" ComponentId="{2E143D5F-2F3F-46BC-9723-64CEBB7823C1}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="Avalonia.Fonts.Inter.dll"/>
+    <ROW Component="Avalonia.FreeDesktop.dll" ComponentId="{ADC6AD96-48F0-42C3-A018-9D195D8A1E91}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="Avalonia.FreeDesktop.dll"/>
+    <ROW Component="Avalonia.Markup.Xaml.dll" ComponentId="{EED6CFDE-1CE5-4382-B828-BA331A59DD60}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="Avalonia.Markup.Xaml.dll"/>
+    <ROW Component="Avalonia.Markup.dll" ComponentId="{91379949-CCEC-425A-BB43-D1577BD2528D}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="Avalonia.Markup.dll"/>
+    <ROW Component="Avalonia.Metal.dll" ComponentId="{B0D81094-2F92-4CC0-B6AA-E6B75CD60854}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="Avalonia.Metal.dll"/>
+    <ROW Component="Avalonia.MicroCom.dll" ComponentId="{7AB0235F-47D4-4581-B626-318482660DF8}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="Avalonia.MicroCom.dll"/>
+    <ROW Component="Avalonia.Native.dll" ComponentId="{26F7BFD0-BC08-447D-83D9-12761833A2B2}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="Avalonia.Native.dll"/>
+    <ROW Component="Avalonia.OpenGL.dll" ComponentId="{0CCD5B5E-298D-448E-8B40-F90AEA7563C9}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="Avalonia.OpenGL.dll"/>
+    <ROW Component="Avalonia.Remote.Protocol.dll" ComponentId="{576CB49F-6EEC-45CB-A28C-631E42F4DC34}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="Avalonia.Remote.Protocol.dll"/>
+    <ROW Component="Avalonia.Skia.dll" ComponentId="{52A86F8B-9AA3-4174-B2F4-A03BA1C7CA93}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="Avalonia.Skia.dll"/>
+    <ROW Component="Avalonia.Themes.Fluent.dll" ComponentId="{31AD8550-75BE-4ACE-8456-6E07B2FF4E3B}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="Avalonia.Themes.Fluent.dll"/>
+    <ROW Component="Avalonia.Vulkan.dll" ComponentId="{FCC07A4C-A750-472E-81C6-BB379D4C5A25}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="Avalonia.Vulkan.dll"/>
+    <ROW Component="Avalonia.Win32.dll" ComponentId="{D61380F9-19AF-4632-A5BF-B2AFC6376B41}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="Avalonia.Win32.dll"/>
+    <ROW Component="Avalonia.X11.dll" ComponentId="{6989839B-8AA7-4D82-A623-79D3325AB9C9}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="Avalonia.X11.dll"/>
+    <ROW Component="Avalonia.dll" ComponentId="{0AB67007-A890-4FEF-A542-6EF08FA20920}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="Avalonia.dll"/>
+    <ROW Component="CommunityToolkit.Mvvm.dll" ComponentId="{5C07DB8B-8F2E-4031-B093-5BF81B92C6B9}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="CommunityToolkit.Mvvm.dll"/>
+    <ROW Component="HarfBuzzSharp.dll" ComponentId="{EDEDC408-C313-4E33-BAD3-5D281747BA33}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="HarfBuzzSharp.dll"/>
+    <ROW Component="MicroCom.Runtime.dll" ComponentId="{37A3FE23-1986-438D-A997-3D3BEC5BD3C3}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="MicroCom.Runtime.dll"/>
+    <ROW Component="ProductInformation" ComponentId="{548DBA02-CF17-492E-BAE7-E35A958538EA}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
+    <ROW Component="SaveGameSaver.Core.deps.json" ComponentId="{8CE6F2B1-0718-4052-85B0-45BEA21CB363}" Directory_="net8.0_Dir" Attributes="0" KeyPath="SaveGameSaver.Core.deps.json" Type="0"/>
+    <ROW Component="SaveGameSaver.Core.dll" ComponentId="{E7CC7EA3-24D2-4ECE-A02E-F8BA4D36BB6E}" Directory_="net8.0_Dir" Attributes="0" KeyPath="SaveGameSaver.Core.dll"/>
+    <ROW Component="SaveGameSaver.Core.dll_1" ComponentId="{458393B9-307C-4ADB-AAA7-5DE1D3E5BC05}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="SaveGameSaver.Core.dll_1"/>
+    <ROW Component="SaveGameSaver.Desktop.deps.json" ComponentId="{C8507873-4CE8-4F60-9CF9-DEA46598AF8B}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="SaveGameSaver.Desktop.deps.json" Type="0"/>
+    <ROW Component="SaveGameSaver.Desktop.dll" ComponentId="{8D4CB55B-E371-4742-8570-F1A65B7FB87D}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="SaveGameSaver.Desktop.dll"/>
+    <ROW Component="SaveGameSaver.Desktop.exe" ComponentId="{C632107E-80AA-47EB-8CA0-AD8F28FA7FED}" Directory_="net8.0_1_Dir" Attributes="256" KeyPath="SaveGameSaver.Desktop.exe"/>
+    <ROW Component="SkiaSharp.dll" ComponentId="{6E3D64E8-7C63-4E82-946E-92EF308ABB8E}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="SkiaSharp.dll"/>
+    <ROW Component="System.IO.Pipelines.dll" ComponentId="{CB7699D6-90A3-49FA-9217-90D8E9B2BB01}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="System.IO.Pipelines.dll"/>
+    <ROW Component="Tmds.DBus.Protocol.dll" ComponentId="{1544465D-8959-4D69-8BEF-B165B07F9ECD}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="Tmds.DBus.Protocol.dll"/>
+    <ROW Component="av_libglesv2.dll" ComponentId="{5C7DCC9F-679B-4C1C-9207-ECF533F4CC31}" Directory_="native_5_Dir" Attributes="256" KeyPath="av_libglesv2.dll"/>
+    <ROW Component="av_libglesv2.dll_1" ComponentId="{9E56EE67-067F-40BA-ADE0-E4D9F54782BA}" Directory_="native_6_Dir" Attributes="256" KeyPath="av_libglesv2.dll_1"/>
+    <ROW Component="av_libglesv2.dll_2" ComponentId="{F3C3CCEF-2465-46A9-851C-06D8B1767733}" Directory_="native_7_Dir" Attributes="0" KeyPath="av_libglesv2.dll_2"/>
+    <ROW Component="libAvaloniaNative.dylib" ComponentId="{8312DFDA-F19B-4892-951B-2E360419DF3A}" Directory_="native_4_Dir" Attributes="0" KeyPath="libAvaloniaNative.dylib" Type="0"/>
+    <ROW Component="libHarfBuzzSharp.dll" ComponentId="{359AF37D-695B-4514-8780-BBE419343237}" Directory_="native_5_Dir" Attributes="256" KeyPath="libHarfBuzzSharp.dll"/>
+    <ROW Component="libHarfBuzzSharp.dll_1" ComponentId="{1CA067B5-4C0E-40F3-9EB9-2590E388F770}" Directory_="native_6_Dir" Attributes="256" KeyPath="libHarfBuzzSharp.dll_1"/>
+    <ROW Component="libHarfBuzzSharp.dll_2" ComponentId="{9654C5E8-E0D3-46CF-9F56-DADF624C76C4}" Directory_="native_7_Dir" Attributes="0" KeyPath="libHarfBuzzSharp.dll_2"/>
+    <ROW Component="libHarfBuzzSharp.so" ComponentId="{AAFA046A-607B-417E-9394-ABB96ED87411}" Directory_="native_Dir" Attributes="0" KeyPath="libHarfBuzzSharp.so" Type="0"/>
+    <ROW Component="libHarfBuzzSharp.so_1" ComponentId="{B555D3D5-959C-4644-995D-19E0F476035A}" Directory_="native_1_Dir" Attributes="0" KeyPath="libHarfBuzzSharp.so_1" Type="0"/>
+    <ROW Component="libHarfBuzzSharp.so_2" ComponentId="{78487F44-2264-432A-BDB1-F699B36D4D76}" Directory_="native_2_Dir" Attributes="0" KeyPath="libHarfBuzzSharp.so_2" Type="0"/>
+    <ROW Component="libHarfBuzzSharp.so_3" ComponentId="{5705479C-D6BF-4B00-B96A-E2B97233818A}" Directory_="native_3_Dir" Attributes="0" KeyPath="libHarfBuzzSharp.so_3" Type="0"/>
+    <ROW Component="libSkiaSharp.dll" ComponentId="{F7BE172B-BDC3-4C00-B01B-213BD3A1AF64}" Directory_="native_5_Dir" Attributes="256" KeyPath="libSkiaSharp.dll"/>
+    <ROW Component="libSkiaSharp.dll_1" ComponentId="{11435EA3-7602-4676-A579-4C38708F73B6}" Directory_="native_6_Dir" Attributes="256" KeyPath="libSkiaSharp.dll_1"/>
+    <ROW Component="libSkiaSharp.dll_2" ComponentId="{6C9C2B3C-D426-44BE-B90A-C58145992CF4}" Directory_="native_7_Dir" Attributes="0" KeyPath="libSkiaSharp.dll_2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
+    <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
+    <ROW File="SaveGameSaver.Core.deps.json" Component_="SaveGameSaver.Core.deps.json" FileName="SAVEGA~1.JSO|SaveGameSaver.Core.deps.json" Attributes="0" SourcePath="..\SaveGameSaver.Core\bin\Release\net8.0\SaveGameSaver.Core.deps.json" SelfReg="false"/>
+    <ROW File="SaveGameSaver.Core.dll" Component_="SaveGameSaver.Core.dll" FileName="SAVEGA~1.DLL|SaveGameSaver.Core.dll" Attributes="0" SourcePath="..\SaveGameSaver.Core\bin\Release\net8.0\SaveGameSaver.Core.dll" SelfReg="false"/>
+    <ROW File="SaveGameSaver.Core.pdb" Component_="SaveGameSaver.Core.dll" FileName="SAVEGA~1.PDB|SaveGameSaver.Core.pdb" Attributes="0" SourcePath="..\SaveGameSaver.Core\bin\Release\net8.0\SaveGameSaver.Core.pdb" SelfReg="false"/>
+    <ROW File="Avalonia.Base.dll" Component_="Avalonia.Base.dll" FileName="AVALON~1.DLL|Avalonia.Base.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\Avalonia.Base.dll" SelfReg="false"/>
+    <ROW File="Avalonia.Controls.dll" Component_="Avalonia.Controls.dll" FileName="AVALON~2.DLL|Avalonia.Controls.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\Avalonia.Controls.dll" SelfReg="false"/>
+    <ROW File="Avalonia.DesignerSupport.dll" Component_="Avalonia.DesignerSupport.dll" FileName="AVALON~3.DLL|Avalonia.DesignerSupport.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\Avalonia.DesignerSupport.dll" SelfReg="false"/>
+    <ROW File="Avalonia.Desktop.dll" Component_="Avalonia.Desktop.dll" FileName="AVALON~4.DLL|Avalonia.Desktop.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\Avalonia.Desktop.dll" SelfReg="false"/>
+    <ROW File="Avalonia.Dialogs.dll" Component_="Avalonia.Dialogs.dll" FileName="AVALON~5.DLL|Avalonia.Dialogs.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\Avalonia.Dialogs.dll" SelfReg="false"/>
+    <ROW File="Avalonia.dll" Component_="Avalonia.dll" FileName="Avalonia.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\Avalonia.dll" SelfReg="false"/>
+    <ROW File="Avalonia.Fonts.Inter.dll" Component_="Avalonia.Fonts.Inter.dll" FileName="AVALON~6.DLL|Avalonia.Fonts.Inter.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\Avalonia.Fonts.Inter.dll" SelfReg="false"/>
+    <ROW File="Avalonia.FreeDesktop.dll" Component_="Avalonia.FreeDesktop.dll" FileName="AVALON~7.DLL|Avalonia.FreeDesktop.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\Avalonia.FreeDesktop.dll" SelfReg="false"/>
+    <ROW File="Avalonia.Markup.dll" Component_="Avalonia.Markup.dll" FileName="AVALON~8.DLL|Avalonia.Markup.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\Avalonia.Markup.dll" SelfReg="false"/>
+    <ROW File="Avalonia.Markup.Xaml.dll" Component_="Avalonia.Markup.Xaml.dll" FileName="AVALON~9.DLL|Avalonia.Markup.Xaml.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\Avalonia.Markup.Xaml.dll" SelfReg="false"/>
+    <ROW File="Avalonia.Metal.dll" Component_="Avalonia.Metal.dll" FileName="AVALO~10.DLL|Avalonia.Metal.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\Avalonia.Metal.dll" SelfReg="false"/>
+    <ROW File="Avalonia.MicroCom.dll" Component_="Avalonia.MicroCom.dll" FileName="AVALO~11.DLL|Avalonia.MicroCom.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\Avalonia.MicroCom.dll" SelfReg="false"/>
+    <ROW File="Avalonia.Native.dll" Component_="Avalonia.Native.dll" FileName="AVALO~12.DLL|Avalonia.Native.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\Avalonia.Native.dll" SelfReg="false"/>
+    <ROW File="Avalonia.OpenGL.dll" Component_="Avalonia.OpenGL.dll" FileName="AVALO~13.DLL|Avalonia.OpenGL.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\Avalonia.OpenGL.dll" SelfReg="false"/>
+    <ROW File="Avalonia.Remote.Protocol.dll" Component_="Avalonia.Remote.Protocol.dll" FileName="AVALO~14.DLL|Avalonia.Remote.Protocol.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\Avalonia.Remote.Protocol.dll" SelfReg="false"/>
+    <ROW File="Avalonia.Skia.dll" Component_="Avalonia.Skia.dll" FileName="AVALO~15.DLL|Avalonia.Skia.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\Avalonia.Skia.dll" SelfReg="false"/>
+    <ROW File="Avalonia.Themes.Fluent.dll" Component_="Avalonia.Themes.Fluent.dll" FileName="AVALO~16.DLL|Avalonia.Themes.Fluent.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\Avalonia.Themes.Fluent.dll" SelfReg="false"/>
+    <ROW File="Avalonia.Vulkan.dll" Component_="Avalonia.Vulkan.dll" FileName="AVALO~17.DLL|Avalonia.Vulkan.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\Avalonia.Vulkan.dll" SelfReg="false"/>
+    <ROW File="Avalonia.Win32.dll" Component_="Avalonia.Win32.dll" FileName="AVALO~18.DLL|Avalonia.Win32.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\Avalonia.Win32.dll" SelfReg="false"/>
+    <ROW File="Avalonia.X11.dll" Component_="Avalonia.X11.dll" FileName="AVALO~19.DLL|Avalonia.X11.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\Avalonia.X11.dll" SelfReg="false"/>
+    <ROW File="CommunityToolkit.Mvvm.dll" Component_="CommunityToolkit.Mvvm.dll" FileName="COMMUN~1.DLL|CommunityToolkit.Mvvm.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\CommunityToolkit.Mvvm.dll" SelfReg="false"/>
+    <ROW File="HarfBuzzSharp.dll" Component_="HarfBuzzSharp.dll" FileName="HARFBU~1.DLL|HarfBuzzSharp.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\HarfBuzzSharp.dll" SelfReg="false"/>
+    <ROW File="MicroCom.Runtime.dll" Component_="MicroCom.Runtime.dll" FileName="MICROC~1.DLL|MicroCom.Runtime.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\MicroCom.Runtime.dll" SelfReg="false"/>
+    <ROW File="libHarfBuzzSharp.so" Component_="libHarfBuzzSharp.so" FileName="LIBHAR~1.SO|libHarfBuzzSharp.so" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\runtimes\linux-arm\native\libHarfBuzzSharp.so" SelfReg="false"/>
+    <ROW File="libSkiaSharp.so" Component_="libHarfBuzzSharp.so" FileName="LIBSKI~1.SO|libSkiaSharp.so" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\runtimes\linux-arm\native\libSkiaSharp.so" SelfReg="false"/>
+    <ROW File="libHarfBuzzSharp.so_1" Component_="libHarfBuzzSharp.so_1" FileName="LIBHAR~1.SO|libHarfBuzzSharp.so" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\runtimes\linux-arm64\native\libHarfBuzzSharp.so" SelfReg="false"/>
+    <ROW File="libSkiaSharp.so_1" Component_="libHarfBuzzSharp.so_1" FileName="LIBSKI~1.SO|libSkiaSharp.so" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\runtimes\linux-arm64\native\libSkiaSharp.so" SelfReg="false"/>
+    <ROW File="libHarfBuzzSharp.so_2" Component_="libHarfBuzzSharp.so_2" FileName="LIBHAR~1.SO|libHarfBuzzSharp.so" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\runtimes\linux-musl-x64\native\libHarfBuzzSharp.so" SelfReg="false"/>
+    <ROW File="libSkiaSharp.so_2" Component_="libHarfBuzzSharp.so_2" FileName="LIBSKI~1.SO|libSkiaSharp.so" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\runtimes\linux-musl-x64\native\libSkiaSharp.so" SelfReg="false"/>
+    <ROW File="libHarfBuzzSharp.so_3" Component_="libHarfBuzzSharp.so_3" FileName="LIBHAR~1.SO|libHarfBuzzSharp.so" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\runtimes\linux-x64\native\libHarfBuzzSharp.so" SelfReg="false"/>
+    <ROW File="libSkiaSharp.so_3" Component_="libHarfBuzzSharp.so_3" FileName="LIBSKI~1.SO|libSkiaSharp.so" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\runtimes\linux-x64\native\libSkiaSharp.so" SelfReg="false"/>
+    <ROW File="libAvaloniaNative.dylib" Component_="libAvaloniaNative.dylib" FileName="LIBAVA~1.DYL|libAvaloniaNative.dylib" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\runtimes\osx\native\libAvaloniaNative.dylib" SelfReg="false"/>
+    <ROW File="libHarfBuzzSharp.dylib" Component_="libAvaloniaNative.dylib" FileName="LIBHAR~1.DYL|libHarfBuzzSharp.dylib" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\runtimes\osx\native\libHarfBuzzSharp.dylib" SelfReg="false"/>
+    <ROW File="libSkiaSharp.dylib" Component_="libAvaloniaNative.dylib" FileName="LIBSKI~1.DYL|libSkiaSharp.dylib" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\runtimes\osx\native\libSkiaSharp.dylib" SelfReg="false"/>
+    <ROW File="av_libglesv2.dll" Component_="av_libglesv2.dll" FileName="AV_LIB~1.DLL|av_libglesv2.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\runtimes\win-arm64\native\av_libglesv2.dll" SelfReg="false"/>
+    <ROW File="libHarfBuzzSharp.dll" Component_="libHarfBuzzSharp.dll" FileName="LIBHAR~1.DLL|libHarfBuzzSharp.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\runtimes\win-arm64\native\libHarfBuzzSharp.dll" SelfReg="false"/>
+    <ROW File="libSkiaSharp.dll" Component_="libSkiaSharp.dll" FileName="LIBSKI~1.DLL|libSkiaSharp.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\runtimes\win-arm64\native\libSkiaSharp.dll" SelfReg="false"/>
+    <ROW File="av_libglesv2.dll_1" Component_="av_libglesv2.dll_1" FileName="AV_LIB~1.DLL|av_libglesv2.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\runtimes\win-x64\native\av_libglesv2.dll" SelfReg="false"/>
+    <ROW File="libHarfBuzzSharp.dll_1" Component_="libHarfBuzzSharp.dll_1" FileName="LIBHAR~1.DLL|libHarfBuzzSharp.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\runtimes\win-x64\native\libHarfBuzzSharp.dll" SelfReg="false"/>
+    <ROW File="libSkiaSharp.dll_1" Component_="libSkiaSharp.dll_1" FileName="LIBSKI~1.DLL|libSkiaSharp.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\runtimes\win-x64\native\libSkiaSharp.dll" SelfReg="false"/>
+    <ROW File="av_libglesv2.dll_2" Component_="av_libglesv2.dll_2" FileName="AV_LIB~1.DLL|av_libglesv2.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\runtimes\win-x86\native\av_libglesv2.dll" SelfReg="false"/>
+    <ROW File="libHarfBuzzSharp.dll_2" Component_="libHarfBuzzSharp.dll_2" FileName="LIBHAR~1.DLL|libHarfBuzzSharp.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\runtimes\win-x86\native\libHarfBuzzSharp.dll" SelfReg="false"/>
+    <ROW File="libSkiaSharp.dll_2" Component_="libSkiaSharp.dll_2" FileName="LIBSKI~1.DLL|libSkiaSharp.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\runtimes\win-x86\native\libSkiaSharp.dll" SelfReg="false"/>
+    <ROW File="SaveGameSaver.Core.dll_1" Component_="SaveGameSaver.Core.dll_1" FileName="SAVEGA~1.DLL|SaveGameSaver.Core.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\SaveGameSaver.Core.dll" SelfReg="false"/>
+    <ROW File="SaveGameSaver.Core.pdb_1" Component_="SaveGameSaver.Core.dll_1" FileName="SAVEGA~1.PDB|SaveGameSaver.Core.pdb" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\SaveGameSaver.Core.pdb" SelfReg="false"/>
+    <ROW File="SaveGameSaver.Desktop.deps.json" Component_="SaveGameSaver.Desktop.deps.json" FileName="SAVEGA~1.JSO|SaveGameSaver.Desktop.deps.json" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\SaveGameSaver.Desktop.deps.json" SelfReg="false"/>
+    <ROW File="SaveGameSaver.Desktop.dll" Component_="SaveGameSaver.Desktop.dll" FileName="SAVEGA~2.DLL|SaveGameSaver.Desktop.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\SaveGameSaver.Desktop.dll" SelfReg="false"/>
+    <ROW File="SaveGameSaver.Desktop.exe" Component_="SaveGameSaver.Desktop.exe" FileName="SAVEGA~1.EXE|SaveGameSaver.Desktop.exe" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\SaveGameSaver.Desktop.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="SaveGameSaver.Desktop.pdb" Component_="SaveGameSaver.Desktop.exe" FileName="SAVEGA~2.PDB|SaveGameSaver.Desktop.pdb" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\SaveGameSaver.Desktop.pdb" SelfReg="false"/>
+    <ROW File="SaveGameSaver.Desktop.runtimeconfig.json" Component_="SaveGameSaver.Desktop.deps.json" FileName="SAVEGA~2.JSO|SaveGameSaver.Desktop.runtimeconfig.json" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\SaveGameSaver.Desktop.runtimeconfig.json" SelfReg="false"/>
+    <ROW File="SkiaSharp.dll" Component_="SkiaSharp.dll" FileName="SKIASH~1.DLL|SkiaSharp.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\SkiaSharp.dll" SelfReg="false"/>
+    <ROW File="System.IO.Pipelines.dll" Component_="System.IO.Pipelines.dll" FileName="SYSTEM~1.DLL|System.IO.Pipelines.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\System.IO.Pipelines.dll" SelfReg="false"/>
+    <ROW File="Tmds.DBus.Protocol.dll" Component_="Tmds.DBus.Protocol.dll" FileName="TMDSDB~1.DLL|Tmds.DBus.Protocol.dll" Attributes="0" SourcePath="..\SaveGameSaver.Desktop\bin\Release\net8.0\Tmds.DBus.Protocol.dll" SelfReg="false"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" Languages="en_GB" InstallationType="4" UseLargeSchema="true"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
+    <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_en_GB.ail"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
+    <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
+    <ROW Fragment="FolderDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\FolderDlg.aip"/>
+    <ROW Fragment="MaintenanceTypeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceTypeDlg.aip"/>
+    <ROW Fragment="MaintenanceWelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceWelcomeDlg.aip"/>
+    <ROW Fragment="SequenceDialogs.aip" Path="&lt;AI_THEMES&gt;classic\fragments\SequenceDialogs.aip"/>
+    <ROW Fragment="Sequences.aip" Path="&lt;AI_FRAGS&gt;Sequences.aip"/>
+    <ROW Fragment="StaticUIStrings.aip" Path="&lt;AI_FRAGS&gt;StaticUIStrings.aip"/>
+    <ROW Fragment="Themes.aip" Path="&lt;AI_FRAGS&gt;Themes.aip"/>
+    <ROW Fragment="UI.aip" Path="&lt;AI_THEMES&gt;classic\fragments\UI.aip"/>
+    <ROW Fragment="Validation.aip" Path="&lt;AI_FRAGS&gt;Validation.aip"/>
+    <ROW Fragment="VerifyRemoveDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRemoveDlg.aip"/>
+    <ROW Fragment="VerifyRepairDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRepairDlg.aip"/>
+    <ROW Fragment="WelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\WelcomeDlg.aip"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
+    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="MaintenanceWelcomeDlg" Control_="Next" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="99"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_MAINT" Ordering="198"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="202"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="197"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_MAINT" Ordering="101"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="ChangeButton" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="501"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceWelcomeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RemoveButton" Event="NewDialog" Argument="VerifyRemoveDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RepairButton" Event="NewDialog" Argument="VerifyRepairDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="1"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Repair" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="399" Options="1"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Remove" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="299" Options="1"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_PATCH" Ordering="201"/>
+    <ROW Dialog_="ResumeDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_RESUME" Ordering="299"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_PATCH" Ordering="199"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
+    <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
+    <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
+    <ROW Action="AI_EnableDebugLog" Type="321" Source="aicustact.dll" Target="EnableDebugLog"/>
+    <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
+    <ROW Action="AI_PRESERVE_INSTALL_TYPE" Type="65" Source="aicustact.dll" Target="PreserveInstallType"/>
+    <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
+    <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
+    <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
+    <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]"/>
+    <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
+    <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
+    <ROW Feature_="MainFeature" Component_="APPDIR"/>
+    <ROW Feature_="MainFeature" Component_="ProductInformation"/>
+    <ROW Feature_="MainFeature" Component_="SaveGameSaver.Core.deps.json"/>
+    <ROW Feature_="MainFeature" Component_="SaveGameSaver.Core.dll"/>
+    <ROW Feature_="MainFeature" Component_="Avalonia.Base.dll"/>
+    <ROW Feature_="MainFeature" Component_="Avalonia.Controls.dll"/>
+    <ROW Feature_="MainFeature" Component_="Avalonia.DesignerSupport.dll"/>
+    <ROW Feature_="MainFeature" Component_="Avalonia.Desktop.dll"/>
+    <ROW Feature_="MainFeature" Component_="Avalonia.Dialogs.dll"/>
+    <ROW Feature_="MainFeature" Component_="Avalonia.dll"/>
+    <ROW Feature_="MainFeature" Component_="Avalonia.Fonts.Inter.dll"/>
+    <ROW Feature_="MainFeature" Component_="Avalonia.FreeDesktop.dll"/>
+    <ROW Feature_="MainFeature" Component_="Avalonia.Markup.dll"/>
+    <ROW Feature_="MainFeature" Component_="Avalonia.Markup.Xaml.dll"/>
+    <ROW Feature_="MainFeature" Component_="Avalonia.Metal.dll"/>
+    <ROW Feature_="MainFeature" Component_="Avalonia.MicroCom.dll"/>
+    <ROW Feature_="MainFeature" Component_="Avalonia.Native.dll"/>
+    <ROW Feature_="MainFeature" Component_="Avalonia.OpenGL.dll"/>
+    <ROW Feature_="MainFeature" Component_="Avalonia.Remote.Protocol.dll"/>
+    <ROW Feature_="MainFeature" Component_="Avalonia.Skia.dll"/>
+    <ROW Feature_="MainFeature" Component_="Avalonia.Themes.Fluent.dll"/>
+    <ROW Feature_="MainFeature" Component_="Avalonia.Vulkan.dll"/>
+    <ROW Feature_="MainFeature" Component_="Avalonia.Win32.dll"/>
+    <ROW Feature_="MainFeature" Component_="Avalonia.X11.dll"/>
+    <ROW Feature_="MainFeature" Component_="CommunityToolkit.Mvvm.dll"/>
+    <ROW Feature_="MainFeature" Component_="HarfBuzzSharp.dll"/>
+    <ROW Feature_="MainFeature" Component_="MicroCom.Runtime.dll"/>
+    <ROW Feature_="MainFeature" Component_="libHarfBuzzSharp.so"/>
+    <ROW Feature_="MainFeature" Component_="libHarfBuzzSharp.so_1"/>
+    <ROW Feature_="MainFeature" Component_="libHarfBuzzSharp.so_2"/>
+    <ROW Feature_="MainFeature" Component_="libHarfBuzzSharp.so_3"/>
+    <ROW Feature_="MainFeature" Component_="libAvaloniaNative.dylib"/>
+    <ROW Feature_="MainFeature" Component_="av_libglesv2.dll"/>
+    <ROW Feature_="MainFeature" Component_="libHarfBuzzSharp.dll"/>
+    <ROW Feature_="MainFeature" Component_="libSkiaSharp.dll"/>
+    <ROW Feature_="MainFeature" Component_="av_libglesv2.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="libHarfBuzzSharp.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="libSkiaSharp.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="av_libglesv2.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="libHarfBuzzSharp.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="libSkiaSharp.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="SaveGameSaver.Core.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="SaveGameSaver.Desktop.deps.json"/>
+    <ROW Feature_="MainFeature" Component_="SaveGameSaver.Desktop.dll"/>
+    <ROW Feature_="MainFeature" Component_="SaveGameSaver.Desktop.exe"/>
+    <ROW Feature_="MainFeature" Component_="SkiaSharp.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.IO.Pipelines.dll"/>
+    <ROW Feature_="MainFeature" Component_="Tmds.DBus.Protocol.dll"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
+    <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1501"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1399"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
+    <ROW Action="AI_PRESERVE_INSTALL_TYPE" Sequence="199"/>
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="53"/>
+    <ROW Action="AI_DpiContentScale" Sequence="52"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
+    <ROW Condition="((VersionNT &lt;&gt; 501) AND (VersionNT &lt;&gt; 502))" Description="[ProductName] cannot be installed on [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] can not be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] can not be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 600)" Description="[ProductName] cannot be installed on [WindowsTypeNT60Display]." DescriptionLocId="AI.LaunchCondition.NoNT60" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="VersionNT" Description="[ProductName] can not be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
+    <ROW Registry="Manufacturer" Root="-1" Key="Software\[Manufacturer]" Name="\"/>
+    <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
+    <ROW Registry="ProductName" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="\"/>
+    <ROW Registry="Software" Root="-1" Key="Software" Name="\"/>
+    <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
+    <ROW Shortcut="SaveGameSaver.Desktop" Directory_="APPDIR" Name="SAVEGA~1.DES|SaveGameSaver.Desktop" Component_="SaveGameSaver.Desktop.exe" Target="[#SaveGameSaver.Desktop.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="net8.0_1_Dir"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
+    <ATTRIBUTE name="UsedTheme" value="classic"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiUpgradeComponent">
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="0.0.1" VersionMax="[|ProductVersion]" Attributes="257" ActionProperty="OLDPRODUCTS"/>
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
+  </COMPONENT>
+</DOCUMENT>

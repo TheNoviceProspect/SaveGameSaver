@@ -4,26 +4,29 @@ on:
   push:
     tags:
       - 'v*'
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
-  
+    branches: ["main"]
+
 jobs:
   setup: # New job for setup and common steps
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     outputs:
       solution_name: ${{ env.Solution_Name }}
-      wap_project_path: ${{ env.Wap_Project_Path }}
+      core_project_path: ${{ env.Core_Project_Path }}
+      desktop_project_path: ${{ env.Desktop_Project_Path }}
       output_directory: ${{ env.Output_Directory }}
       app_version: ${{ steps.set_app_version.outputs.appVersion }}
 
     env:
-      appVersion: 0.2α(alpha)
-      Solution_Name: SaveGameSaver                         
-      Wap_Project_Directory: SaveGameSaver    
-      Wap_Project_Path: SaveGameSaver                   
-      NUGET_PACKAGES: ${{ github.workspace }}\\.nuget\\packages
-      Output_Directory: ${{ github.workspace }}\\output\\
+      appVersion: 0.3α(alpha)
+      Solution_Name: SaveGameSaver
+      Core_Project_Directory: SaveGameSaver.Core
+      Core_Project_Path: SaveGameSaver.Core
+      Desktop_Project_Directory: SaveGameSaver.Desktop
+      Desktop_Project_Path: SaveGameSaver.Desktop
+      NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
+      Output_Directory: ${{ github.workspace }}/output/
 
     steps:
       - name: Set App Version Output
@@ -33,8 +36,8 @@ jobs:
       - name: Validate Cache
         uses: actions/cache@v4
         with:
-          path: ${{ github.workspace }}\\.nuget\\packages
-          key: ${{ runner.os }}-nuget-${{ env.appVersion }}-${{ hashFiles('**\\packages.lock.json') }}
+          path: ${{ github.workspace }}/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ env.appVersion }}-${{ hashFiles('**/packages.lock.json') }}
           restore-keys: |
             ${{ runner.os }}-nuget-${{ env.appVersion }}
 
@@ -48,8 +51,8 @@ jobs:
     strategy:
       matrix:
         configuration: [Release]
-        targetplatform: [net8.0-windows]
-        runtimeidentifier: [win-x64,win-arm64]
+        targetplatform: [net8.0]
+        runtimeidentifier: [win-x64,win-arm64,linux-x64]
 
     runs-on: windows-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
@@ -63,14 +66,14 @@ jobs:
         uses: microsoft/setup-msbuild@v2
 
       - name: Restore the application
-        run: msbuild ${{ needs.setup.outputs.solution_name }} /t:Restore /p:Configuration=$env:Configuration /p:TargetPlatform=$env:Targetplatform /p:RuntimeIdentifiers=$env:Runtimeidentifier
+        run: msbuild ${{ needs.setup.outputs.desktop_project_path }} /t:Restore /p:Configuration=$env:Configuration /p:TargetPlatform=$env:Targetplatform /p:RuntimeIdentifiers=$env:Runtimeidentifier
         env:
           Configuration: ${{ matrix.configuration }}
           Targetplatform: ${{ matrix.targetplatform }}
           Runtimeidentifier: ${{ matrix.runtimeidentifier }}
 
       - name: Create the app package
-        run: msbuild ${{ needs.setup.outputs.wap_project_path }} /p:Configuration=$env:Configuration /p:TargetPlatform=$env:Targetplatform /p:RuntimeIdentifiers=$env:Runtimeidentifier /p:PublishSingleFile=true /p:SelfContained=true /p:RestorePackages=false /p:OutDir=${{ needs.setup.outputs.output_directory }}
+        run: msbuild ${{ needs.setup.outputs.desktop_project_path }} /p:Configuration=$env:Configuration /p:TargetPlatform=$env:Targetplatform /p:RuntimeIdentifiers=$env:Runtimeidentifier /p:UseAppHost=true /p:PublishSingleFile=true /p:SelfContained=true /p:RestorePackages=false /p:OutDir=${{ needs.setup.outputs.output_directory }}
         env:
           Configuration: ${{ matrix.configuration }}
           Targetplatform: ${{ matrix.targetplatform }}
@@ -79,16 +82,8 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ needs.setup.outputs.solution_name}}-${{ matrix.runtimeidentifier }}.exe
-          path: ${{ needs.setup.outputs.output_directory }}\\${{ needs.setup.outputs.solution_name }}*.exe
-
-      - name: Print Environment Variables
-        run: |
-          echo "GITHUB_EVENT_NAME: ${{ github.event_name }}"
-          echo "GITHUB_REF: ${{ github.ref }}"
-          echo "GITHUB_RUN_NUMBER: ${{ github.run_number }}"
-          echo "GITHUB_EVENT_COMMITS: ${{ toJSON(github.event.commits) }}"
-          echo "GITHUB_EVENT_PULL_REQUEST: ${{ toJSON(github.event.pull_request) }}"
+          name: ${{ needs.setup.outputs.solution_name}}-${{ matrix.runtimeidentifier }}
+          path: ${{ needs.setup.outputs.output_directory }}\\* # Upload all files in the output directory
 
   create-release:
     runs-on: windows-latest
@@ -105,12 +100,12 @@ jobs:
       - name: Download win-x64 artifact
         uses: actions/download-artifact@v3
         with:
-          name: SaveGameSaver-win-x64.exe # Match the artifact name from the build job
+          name: SaveGameSaver-win-x64 # Match the artifact name from the build job
           path: .
       - name: Download win-arm64 artifact
         uses: actions/download-artifact@v3
         with:
-          name: SaveGameSaver-win-arm64.exe # Match the artifact name from the build job
+          name: SaveGameSaver-win-arm64 # Match the artifact name from the build job
           path: .
       - name: Print Environment Variables
         run: |
@@ -152,15 +147,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./${{ needs.setup.outputs.solution_name }}-win-x64.exe
-          asset_name: ${{ needs.setup.outputs.solution_name }}-win-x64.exe
-          asset_content_type: application/octet-stream
+          asset_path: ./SaveGameSaver-win-x64/*  # Upload all files from the downloaded folder
+          asset_name: SaveGameSaver-win-x64.zip # You can zip the folder if you prefer
+          asset_content_type: application/zip # Adjust content type if needed
       - name: Upload win-arm64 release asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./${{ needs.setup.outputs.solution_name }}-win-arm64.exe
-          asset_name: ${{ needs.setup.outputs.solution_name }}-win-arm64.exe
-          asset_content_type: application/octet-stream
+          asset_path: ./SaveGameSaver-win-arm64/* # Upload all files from the downloaded folder
+          asset_name: SaveGameSaver-win-arm64.zip # You can zip the folder if you prefer
+          asset_content_type: application/zip # Adjust content type if needed

@@ -1,25 +1,47 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.11.35312.102
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveGameSaver", "SaveGameSaver\SaveGameSaver.csproj", "{0B2FDCBE-CA4A-4F55-9A7D-F04397B1BBEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaveGameSaver.Core", "SaveGameSaver.Core\SaveGameSaver.Core.csproj", "{AD18593D-C996-4B4A-A580-F985EF797BB7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaveGameSaver.Desktop", "SaveGameSaver.Desktop\SaveGameSaver.Desktop.csproj", "{320FA580-9ED2-4E3A-B83C-D43F2B651B36}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AD18593D-C996-4B4A-A580-F985EF797BB7} = {AD18593D-C996-4B4A-A580-F985EF797BB7}
+	EndProjectSection
+EndProject
+Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "SGS-installer", "SGS-installer\SGS-installer.aiproj", "{ADB99C11-01E1-4CC2-BB4E-CD2B401E3734}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		All|Any CPU = All|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0B2FDCBE-CA4A-4F55-9A7D-F04397B1BBEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0B2FDCBE-CA4A-4F55-9A7D-F04397B1BBEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0B2FDCBE-CA4A-4F55-9A7D-F04397B1BBEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0B2FDCBE-CA4A-4F55-9A7D-F04397B1BBEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD18593D-C996-4B4A-A580-F985EF797BB7}.All|Any CPU.ActiveCfg = Release|Any CPU
+		{AD18593D-C996-4B4A-A580-F985EF797BB7}.All|Any CPU.Build.0 = Release|Any CPU
+		{AD18593D-C996-4B4A-A580-F985EF797BB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD18593D-C996-4B4A-A580-F985EF797BB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD18593D-C996-4B4A-A580-F985EF797BB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD18593D-C996-4B4A-A580-F985EF797BB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{320FA580-9ED2-4E3A-B83C-D43F2B651B36}.All|Any CPU.ActiveCfg = Release|Any CPU
+		{320FA580-9ED2-4E3A-B83C-D43F2B651B36}.All|Any CPU.Build.0 = Release|Any CPU
+		{320FA580-9ED2-4E3A-B83C-D43F2B651B36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{320FA580-9ED2-4E3A-B83C-D43F2B651B36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{320FA580-9ED2-4E3A-B83C-D43F2B651B36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{320FA580-9ED2-4E3A-B83C-D43F2B651B36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADB99C11-01E1-4CC2-BB4E-CD2B401E3734}.All|Any CPU.ActiveCfg = DefaultBuild
+		{ADB99C11-01E1-4CC2-BB4E-CD2B401E3734}.All|Any CPU.Build.0 = DefaultBuild
+		{ADB99C11-01E1-4CC2-BB4E-CD2B401E3734}.Debug|Any CPU.ActiveCfg = DefaultBuild
+		{ADB99C11-01E1-4CC2-BB4E-CD2B401E3734}.Debug|Any CPU.Build.0 = DefaultBuild
+		{ADB99C11-01E1-4CC2-BB4E-CD2B401E3734}.Release|Any CPU.ActiveCfg = DefaultBuild
+		{ADB99C11-01E1-4CC2-BB4E-CD2B401E3734}.Release|Any CPU.Build.0 = DefaultBuild
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C4DB2C3C-C74C-4470-BE57-4B2BE6917ED5}
+		SolutionGuid = {75B2182B-CB92-4828-A468-29434026CB4C}
 	EndGlobalSection
 EndGlobal
