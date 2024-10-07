@@ -70,7 +70,7 @@ jobs:
           Runtimeidentifier: ${{ matrix.runtimeidentifier }}
 
       - name: Create the app package
-        run: dotnet publish ${{ needs.setup.outputs.desktop_project_path }} -c ${{ matrix.configuration }} -r ${{ matrix.runtimeidentifier }} --no-restore --no-logo --self-contained true -o ${{ needs.setup.outputs.output_directory }}
+        run: dotnet publish ${{ needs.setup.outputs.desktop_project_path }} -c ${{ matrix.configuration }} -r ${{ matrix.runtimeidentifier }} --no-restore --self-contained true -o ${{ needs.setup.outputs.output_directory }}
         env:
           Configuration: ${{ matrix.configuration }}
           Targetplatform: ${{ matrix.targetplatform }}
