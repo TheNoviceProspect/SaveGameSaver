@@ -92,11 +92,6 @@ jobs:
         uses: actions/checkout@v3
         with: 
           fetch-depth: 0
-      - name: Read release body from file
-        id: read_release_notes
-        run: |
-          RELEASE_BODY=$(cat release-notes.md)
-          echo "content=${RELEASE_BODY}" >> $GITHUB_OUTPUT
       - name: Download win-x64 artifact
         uses: actions/download-artifact@v3
         with:
@@ -107,13 +102,6 @@ jobs:
         with:
           name: SaveGameSaver-win-arm64 # Match the artifact name from the build job
           path: .
-      - name: Print Environment Variables
-        run: |
-          echo "GITHUB_EVENT_NAME: ${{ github.event_name }}"
-          echo "GITHUB_REF: ${{ github.ref }}"
-          echo "GITHUB_RUN_NUMBER: ${{ github.run_number }}"
-          echo "GITHUB_EVENT_COMMITS: ${{ toJSON(github.event.commits) }}"
-          echo "GITHUB_EVENT_PULL_REQUEST: ${{ toJSON(github.event.pull_request) }}"
       - name: Determine Release Name
         id: determine_release_name
         run: |
