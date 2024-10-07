@@ -12,5 +12,33 @@
 		<vm:MainViewModel />
 	</Design.DataContext>
 
-	<TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<StackPanel Grid.Row="0">
+			<Grid>
+				<Grid.ColumnDefinitions>
+
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+
+				<Button Grid.Column="0" Content="Backup  
+ Dinkum Saves"
+						Margin="20" FontSize="18" FontWeight="Bold"
+						HorizontalAlignment="Center" VerticalAlignment="Center"
+						IsEnabled="False" Command="{Binding BackupCommand}" />
+
+				<Button Grid.Column="1" Content="Restore Save"
+						Margin="20" FontSize="18" FontWeight="Bold"
+						HorizontalAlignment="Center" VerticalAlignment="Center"
+						IsEnabled="False" Command="{Binding RestoreCommand}" />
+			</Grid>
+			<TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+			<ListBox x:Name="SaveList" Margin="20" IsEnabled="False" />
+		</StackPanel>
+	</Grid>
 </UserControl>
