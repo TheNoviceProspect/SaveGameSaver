@@ -66,14 +66,14 @@ jobs:
         uses: microsoft/setup-msbuild@v2
 
       - name: Restore the application
-        run: msbuild ${{ needs.setup.outputs.solution_name }} /t:Restore /p:Configuration=$env:Configuration /p:TargetPlatform=$env:Targetplatform /p:RuntimeIdentifiers=$env:Runtimeidentifier
+        run: msbuild ${{ needs.setup.outputs.desktop_project_path }} /t:Restore /p:Configuration=$env:Configuration /p:TargetPlatform=$env:Targetplatform /p:RuntimeIdentifiers=$env:Runtimeidentifier
         env:
           Configuration: ${{ matrix.configuration }}
           Targetplatform: ${{ matrix.targetplatform }}
           Runtimeidentifier: ${{ matrix.runtimeidentifier }}
 
       - name: Create the app package
-        run: msbuild ${{ needs.setup.outputs.solution_name }} /p:Configuration=$env:Configuration /p:TargetPlatform=$env:Targetplatform /p:RuntimeIdentifiers=$env:Runtimeidentifier /p:UseAppHost=true /p:PublishSingleFile=true /p:SelfContained=true /p:RestorePackages=false /p:OutDir=${{ needs.setup.outputs.output_directory }}
+        run: msbuild ${{ needs.setup.outputs.desktop_project_path }} /p:Configuration=$env:Configuration /p:TargetPlatform=$env:Targetplatform /p:RuntimeIdentifiers=$env:Runtimeidentifier /p:UseAppHost=true /p:PublishSingleFile=true /p:SelfContained=true /p:RestorePackages=false /p:OutDir=${{ needs.setup.outputs.output_directory }}
         env:
           Configuration: ${{ matrix.configuration }}
           Targetplatform: ${{ matrix.targetplatform }}
