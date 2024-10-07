@@ -63,7 +63,7 @@ jobs:
           fetch-depth: 0
 
       - name: Restore the application
-        run: dotnet restore ${{ needs.setup.outputs.desktop_project_path }} --configuration ${{ matrix.configuration }} --runtime ${{ matrix.runtimeidentifier }} --no-logo
+        run: dotnet restore ${{ needs.setup.outputs.desktop_project_path }} --runtime ${{ matrix.runtimeidentifier }} --no-logo
         env:
           Configuration: ${{ matrix.configuration }}
           Targetplatform: ${{ matrix.targetplatform }}
